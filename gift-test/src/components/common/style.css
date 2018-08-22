@@ -1,0 +1,15 @@
+.Loader {
+  margin: 0 auto;
+  max-width: 6em;
+  width: 80%;
+  padding: 1em;
+  text-align: center; }
+
+.Loader img {
+  width: 100%; }
+
+.Checkbox {
+  flex-direction: row; }
+
+.textCheckbox {
+  margin-left: 15pt; }

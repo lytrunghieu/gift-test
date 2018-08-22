@@ -1,0 +1,26 @@
+.Loader {
+  margin: 0 auto;
+  max-width: 6em;
+  width: 80%;
+  padding: 1em;
+  text-align: center;
+  img {
+    width: 100%;
+  }
+}
+.Checkbox {
+  flex-direction: row;
+}
+
+.boxCheckbox {
+}
+
+.textCheckbox {
+  margin-left: 15pt;
+}
+
+.Question {
+  background-color: whitesmoke; }
+
+.QuestionContent {
+  background-color: black; }
