@@ -13,3 +13,12 @@
 
 .textCheckbox {
   margin-left: 15pt; }
+
+.Question {
+  background-color: whitesmoke; }
+
+.QuestionContent {
+  background-color: black; }
+
+.modal {
+  background-color: red; }

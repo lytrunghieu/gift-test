@@ -6,7 +6,24 @@ import CheckBox from './common/CheckBox';
 import QuestionComponent from './common/heightCommon/QuestionComponent';
 import {connect} from 'react-redux';
 import questions from '../constant/questions';
+import description from '../constant/description';
 import * as  _ from "lodash";
+import Modal from 'react-modal';
+
+const customStyles = {
+  content : {
+    // top                   : '50%',
+    // left                  : '50%',
+    // right                 : 'auto',
+    // bottom                : 'auto',
+    // marginRight           : '-50%',
+    // transform             : 'translate(-50%, -50%)',
+    backgroundColor:"white"
+    // width : "100%"
+    // display : "flex",
+    // flex : 1
+  }
+};
 
 class App extends React.Component {
 
@@ -15,11 +32,13 @@ class App extends React.Component {
     this.state = {
       isGoing: true,
       questions: this.generateQuestion(questions),
-      result : []
+      result : [],
+      modalIsOpen : false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
 
@@ -37,7 +56,8 @@ class App extends React.Component {
       return {
         content: q.content,
         id: q.id,
-        selected: 0
+        selected: 0,
+        des : description[q.id]
       }
     });
     return result;
@@ -54,7 +74,8 @@ class App extends React.Component {
       if(sumPoint > 0){
         sum.push({
           id : key,
-          point:sumPoint
+          point:sumPoint,
+          des :group[key][0].des
         });
       }
     }
@@ -71,7 +92,8 @@ class App extends React.Component {
       }
     }
     this.setState({
-      result: maxPoint
+      result: maxPoint,
+      modalIsOpen: true
     });
   }
 
@@ -88,11 +110,48 @@ class App extends React.Component {
     });
   }
 
+  closeModal(){
+    this.setState({
+      modalIsOpen : false
+    });
+  }
+
+  renderResult(){
+    // return <div>No result</div>;
+    const {result} = this.state;
+
+    if(result.length ==0){
+      return <div>No result</div>
+    }
+    else{
+      return result.map(r =>{
+        console.log("r ", r);
+        return (
+          <div>
+            <div>{r.des.name}</div>
+            <div>{r.des.description}</div>
+          </div>
+        );
+      })
+    }
+  }
+
   render() {
     return (
       <div>
         {this.renderQuestion()}
         <button className={"buttonSubmit"} onClick={this.onSubmit}>{"Xác nhận"}</button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          // onAfterOpen={this.afterOpenModal}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          {this.renderResult()}
+        </Modal>
+
       </div>
     );
   }
