@@ -23,7 +23,15 @@
   background-color: whitesmoke; }
 
 .QuestionContent {
-  background-color: black; }
+ }
 .modal {
   background-color: red;
+}
+.buttonShareFb {
+  height: 32px;
+  background-color: #2b542c;
+}
+.BottomButtonResultContainer {
+  display: flex;
+  flex-direction: column;
 }

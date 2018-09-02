@@ -9,6 +9,11 @@ import questions from '../constant/questions';
 import description from '../constant/description';
 import * as  _ from "lodash";
 import Modal from 'react-modal';
+// import {
+// } from 'react-share';
+
+// import { FacebookButton, FacebookCount } from "react-social";
+import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
 
 const customStyles = {
   content: {
@@ -106,7 +111,7 @@ class App extends React.Component {
     }
     this.setState({
       result: maxPoint,
-      modalIsOpen: true,
+      modalIsOpen: true
     });
   }
 
@@ -141,7 +146,13 @@ class App extends React.Component {
     const {result} = this.state;
 
     if (result.length == 0) {
-      return <div>No result</div>
+      return (
+        <div>
+          {/*<div>No result</div>*/}
+          {/*<button className={"buttonSubmit"} onClick={this.onPressReset}>{"Làm lại"}</button>*/}
+        </div>
+      )
+
     }
     else {
       return (<div>
@@ -156,7 +167,15 @@ class App extends React.Component {
           );
         })
         }
+        <div className={"BottomButtonResultContainer"}>
         <button className={"buttonSubmit"} onClick={this.onPressReset}>{"Làm lại"}</button>
+        <FacebookProvider appId="481038945698995">
+          <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className ={"buttonShareFb"}>
+            <h4>Share</h4>
+          </ShareButton>
+
+        </FacebookProvider>
+        </div>
       </div>)
     }
   }
