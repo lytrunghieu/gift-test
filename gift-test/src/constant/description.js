@@ -1,18 +1,18 @@
 import giftKey from "./giftKey"
 
 const description = {
-  [giftKey.HB]: {
+  [giftKey.DH]: {
     name: "Điều hành",
     description: "Tổ chức, ban ngành, nhóm, tổ hoạt động tốt."
   },
 
   [giftKey.SD]: {
-    name: "Sứ đô",
+    name: "Sứ đồ",
     description: "Được sai đi để hoàn thành một sứ mạng/công việc."
   },
 
   [giftKey.SS]: {
-    name: "Sáng suố",
+    name: "Sáng suốt",
     description: "Nhận biết và xử lý tốt mọi công việc."
   },
 
