@@ -257,17 +257,24 @@ const question = [
   {
     content : "Tôi thỏa mãn qua việc dùng khả năng của tôi để phụ giúp người có trách nhiệm." ,
     id :giftKey.CD,
+    index : 46
+  },
+
+
+  {
+    content : "Tôi tin rằng tiến trình dạy và học là quan trọng cho sự tăng trưởng Hội thánh." ,
+    id :giftKey.CD,
     index : 47
   },
 
   {
-    content : "Tôi tin rằng tiến trình dạy và học là quan trọng cho sự tăng trưởng Hội thánh." ,
+    content : "Người khác thường hỏi ý kiến tôi về việc nào là việc có thể thực hiện được, hoặc khi họ cần một sự lựa chọn khác cho một vấn đề nào đó." ,
     id :giftKey.CD,
     index : 48
   },
 
   {
-    content : "Người khác thường hỏi ý kiến tôi về việc nào là việc có thể thực hiện được, hoặc khi họ cần một sự lựa chọn khác cho một vấn đề nào đó." ,
+    content : "Tôi có thể hướng dẫn một ủy ban hay một nhóm để lập các quyết định chung." ,
     id :giftKey.CD,
     index : 49
   },
@@ -736,13 +743,13 @@ const question = [
 
   {
     content : "Tôi có thể làm cho các lẽ thật Thánh kinh khó hiểu trở nên dễ hiểu cho người khác." ,
-    id :giftKey.CD,
+    id :giftKey.GD,
     index :127
   },
 
   {
     content : "Những người tôi đề cử hoặc bầu cử thường trở thành người phục vụ tốt." ,
-    id :giftKey.CD,
+    id :giftKey.KN,
     index :128
   }
 ];

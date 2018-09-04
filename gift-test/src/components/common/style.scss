@@ -8,22 +8,37 @@
     width: 100%;
   }
 }
-.Checkbox {
-  flex-direction: row;
-}
-
 .boxCheckbox {
 }
 
 .textCheckbox {
   margin-left: 15pt;
+  font-size: 2vh;
 }
 
 .Question {
-  background-color: whitesmoke; }
+  background-color: white;
+  //padding-right:  2vw;
+  //padding-left: 2vw;
+  //padding-top: 2vh;
+  //padding-bottom: 2vh;
+
+}
 
 .QuestionContent {
+  font-size: 2vh;
  }
+.IndexQuestionText {
+  font-size: 4vh;
+  color: white;
+}
+.IndexQuestionContainer {
+  height: 5vh;
+  padding-right:  2vw;
+  padding-left: 2vw;
+  background-color: darkblue;
+}
+
 .modal {
   background-color: red;
 }
@@ -35,3 +50,20 @@
   display: flex;
   flex-direction: column;
 }
+.AppContainer {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  background-color: lightgray;
+
+}
+.QuestionContentContainer {
+  padding-right:  2vw;
+  padding-left: 2vw;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+}
+.PlaceholderContainer {
+  height: 2vh;
+  background-color: transparent;
+}
+

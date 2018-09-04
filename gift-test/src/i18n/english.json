@@ -1,15 +1,18 @@
+//{
+//  "Common": {
+//    "Courses": "Courses",
+//    "Home": "Home"
+//  },
+//  "CoursesScreen": {
+//    "Title": "Title",
+//    "Category": "Category",
+//    "Length": "Length",
+//    "Watch": "Watch"
+//  },
+//  "HomeScreen": {
+//    "HelloWorld": "Hello world!"
+//  }
+//}
 {
-  "Common": {
-    "Courses": "Courses",
-    "Home": "Home"
-  },
-  "CoursesScreen": {
-    "Title": "Title",
-    "Category": "Category",
-    "Length": "Length",
-    "Watch": "Watch"
-  },
-  "HomeScreen": {
-    "HelloWorld": "Hello world!"
-  }
+
 }

@@ -4,6 +4,7 @@ import Header from './common/Header';
 import SelectInput from './common/SelectInput';
 import CheckBox from './common/CheckBox';
 import QuestionComponent from './common/heightCommon/QuestionComponent';
+import Placeholder from './common/Placeholder';
 import {connect} from 'react-redux';
 import questions from '../constant/questions';
 import description from '../constant/description';
@@ -13,7 +14,7 @@ import Modal from 'react-modal';
 // } from 'react-share';
 
 // import { FacebookButton, FacebookCount } from "react-social";
-import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
+// import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
 
 const customStyles = {
   content: {
@@ -54,6 +55,7 @@ class App extends React.Component {
   generateQuestion(questions) {
     let result = [];
     result = questions.map(q => {
+      console.log("index :",q.index)
       return {
         content: q.content,
         id: q.id,
@@ -135,8 +137,13 @@ class App extends React.Component {
   renderQuestion() {
     const {questions} = this.state;
     return questions.map((q, index) => {
-      return (<QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
-                                 selectedIndex={q.selected}/>);
+      return (<div>
+        <QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
+                           selectedIndex={q.selected}/>
+        {index < questions.length -1 ?
+          <Placeholder/> : null
+        }
+      </div>);
     });
   }
 
@@ -173,7 +180,6 @@ class App extends React.Component {
           <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className ={"buttonShareFb"}>
             <h4>Share</h4>
           </ShareButton>
-
         </FacebookProvider>
         </div>
       </div>);
@@ -182,7 +188,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={"AppContainer"}>
         {this.renderQuestion()}
         <button className={"buttonSubmit"} onClick={this.onSubmit}>{"Xác nhận"}</button>
         <Modal

@@ -7,12 +7,18 @@ const Checkbox = ({text , isActive = false, onChangeValue =() =>{}}) => {
       onClick={onChangeValue}
       className="Checkbox"
     >
-      <input
-        type="checkbox"
-        checked={isActive}
-        onChange={onChangeValue}
-      />
-     <label className={"textCheckbox"}>{text}</label>
+      <span>
+         <input
+           type="checkbox"
+           checked={isActive}
+           onChange={onChangeValue}
+         />
+      </span>
+      <span>
+         <p className={"textCheckbox"}>{text}</p>
+      </span>
+
+
 
       </div>
   );
