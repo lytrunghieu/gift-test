@@ -14,7 +14,7 @@ import Modal from 'react-modal';
 // } from 'react-share';
 
 // import { FacebookButton, FacebookCount } from "react-social";
-// import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
+import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
 
 const customStyles = {
   content: {
@@ -55,7 +55,6 @@ class App extends React.Component {
   generateQuestion(questions) {
     let result = [];
     result = questions.map(q => {
-      console.log("index :",q.index)
       return {
         content: q.content,
         id: q.id,
@@ -155,8 +154,9 @@ class App extends React.Component {
     if (result.length == 0) {
       return (
         <div>
-          {/*<div>No result</div>*/}
-          {/*<button className={"buttonSubmit"} onClick={this.onPressReset}>{"Làm lại"}</button>*/}
+          <p className={"TitleNoResult"}>Tiếc quá không tìm thấy ân tứ của bạn trong bài khảo sát này</p>
+          <p className={"DescriptionResult"}>Đừng bối rối, hãy kiên nhẫn cầu nguyện. Có thể bạn có ấn tứ khác không nằm trong bài khảo sát này</p>
+          <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
         </div>
       );
 
@@ -167,15 +167,15 @@ class App extends React.Component {
           // console.log("r ", r);
           return (
             <div>
-              <div>{r.des.name}</div>
-              <div>{r.des.description}</div>
-
+              <p className={"TitleResult"}>{r.des.name}</p>
+              <p className={"DescriptionResult"}>{r.des.description}</p>
+              <Placeholder/>
             </div>
           );
         })
         }
         <div className={"BottomButtonResultContainer"}>
-        <button className={"buttonSubmit"} onClick={this.onPressReset}>{"Làm lại"}</button>
+        <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
         <FacebookProvider appId="481038945698995">
           <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className ={"buttonShareFb"}>
             <h4>Share</h4>
@@ -190,7 +190,8 @@ class App extends React.Component {
     return (
       <div className={"AppContainer"}>
         {this.renderQuestion()}
-        <button className={"buttonSubmit"} onClick={this.onSubmit}>{"Xác nhận"}</button>
+        <Placeholder/>
+        <button className={"ButtonSubmitContainer"} onClick={this.onSubmit}>{"Xác nhận"}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
 

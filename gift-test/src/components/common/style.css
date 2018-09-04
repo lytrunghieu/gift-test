@@ -16,7 +16,8 @@
   background-color: white; }
 
 .QuestionContent {
-  font-size: 2vh; }
+  font-size: 2vh;
+  font-weight: bold; }
 
 .IndexQuestionText {
   font-size: 4vh;
@@ -42,7 +43,8 @@
 .AppContainer {
   padding-left: 4vw;
   padding-right: 4vw;
-  background-color: lightgray; }
+  background-color: lightgray;
+  padding-bottom: 2vh; }
 
 .QuestionContentContainer {
   padding-right: 2vw;
@@ -53,3 +55,36 @@
 .PlaceholderContainer {
   height: 2vh;
   background-color: transparent; }
+
+.CheckboxIcon {
+  width: 3vh;
+  height: 3vh; }
+
+.CheckboxContainer {
+  display: flex;
+  flex-direction: row;
+  height: 4vh;
+  align-items: center; }
+
+.ButtonSubmitContainer {
+  background-color: darkblue;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+  width: 50vw;
+  font-size: 4vh;
+  color: white;
+  border-radius: 10px;
+  align-self: center; }
+
+.TitleResult {
+  font-size: 4vh;
+  color: darkblue;
+  font-weight: bold; }
+
+.DescriptionResult {
+  font-size: 3vh; }
+
+.TitleNoResult {
+  font-size: 4vh;
+  color: orangered; }
