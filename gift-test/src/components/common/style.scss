@@ -44,8 +44,15 @@
   background-color: red;
 }
 .buttonShareFb {
-  height: 32px;
-  background-color: #2b542c;
+  height: 6vh;
+  width: 50vw;
+  font-size: 4vh;
+  align-items: center;
+  justify-content: center;
+  background-color: darkblue;
+  color: white;
+  align-self: center;
+  border-radius: 10px;
 }
 .BottomButtonResultContainer {
   display: flex;
@@ -91,6 +98,12 @@
 }
 .TitleResult {
   font-size: 4vh;
+  color: orangered;
+  font-weight: bold;
+}
+
+.TitleResult {
+  font-size: 3vh;
   color: darkblue;
   font-weight: bold;
 }

@@ -15,6 +15,8 @@ import Modal from 'react-modal';
 
 // import { FacebookButton, FacebookCount } from "react-social";
 import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
+// import * as Scroll from 'react-scroll';
+// import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const customStyles = {
   content: {
@@ -41,13 +43,15 @@ class App extends React.Component {
       isGoing: true,
       questions: this.generateQuestion(questions),
       result: [],
-      modalIsOpen: false
+      modalIsOpen: false,
+      modalIsOpenIntro : true
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onPressReset = this.onPressReset.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.closeModalIntro = this.closeModalIntro.bind(this);
   }
 
   //endregion
@@ -130,6 +134,12 @@ class App extends React.Component {
     });
   }
 
+  closeModalIntro() {
+    this.setState({
+      modalIsOpenIntro: false
+    });
+  }
+
 
   //region rendering
 
@@ -139,13 +149,34 @@ class App extends React.Component {
       return (<div>
         <QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
                            selectedIndex={q.selected}/>
-        {index < questions.length -1 ?
+        {index < questions.length - 1 ?
           <Placeholder/> : null
         }
       </div>);
     });
   }
 
+  renderIntro(){
+    return(
+        <div>
+          <p className={"TitleResult"}>Những điều cần biết về ân tứ</p>
+          <p className={"QuestionContent"}>1/Tài năng không phải là ân tứ.</p>
+          <p className={"QuestionContent"}>2/Tài năng có thể trở thành ân tứ.</p>
+          <p className={"QuestionContent"}>3/Trách nhiệm không phải là ân tứ.</p>
+          <p className={"QuestionContent"}>4/Cá tánh không phải là ân tứ.</p>
+          <p className={"TitleResult"}>Sự sử dụng sai lầm về ân tứ:</p>
+          <p className={"QuestionContent"}>1/Dùng ân tứ khỏa lấp sự yếu đuối tâm linh.</p>
+          <p className={"QuestionContent"}>2/Dùng ân tứ để tôn vinh cá nhân.</p>
+          <p className={"QuestionContent"}>3/Dùng ân tứ để phô trương quyền lực.</p>
+          <p className={"QuestionContent"}>4/Dùng ân tứ để áp lực và làm khổ người khác.</p>
+          <p className={"QuestionContent"}>5/Dùng ân tứ từ chối trách nhiệm.</p>
+          <p className={"TitleResult"}>Lời nhắn nhủ</p>
+          <p className={"QuestionContent"}>Bài khảo sát ân tứ này chỉ mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của bạn thì cũng đừng bối rối nhé</p>
+          <Placeholder/>
+          <button className={"ButtonSubmitContainer"} onClick={this.closeModalIntro}>{"Tôi đồng ý"}</button>
+        </div>
+    );
+  }
 
   renderResult() {
     // return <div>No result</div>;
@@ -155,16 +186,24 @@ class App extends React.Component {
       return (
         <div>
           <p className={"TitleNoResult"}>Tiếc quá không tìm thấy ân tứ của bạn trong bài khảo sát này</p>
-          <p className={"DescriptionResult"}>Đừng bối rối, hãy kiên nhẫn cầu nguyện. Có thể bạn có ấn tứ khác không nằm trong bài khảo sát này</p>
+          <p className={"DescriptionResult"}>Đừng bối rối, hãy kiên nhẫn cầu nguyện. Có thể bạn có ấn tứ khác không nằm
+            trong bài khảo sát này</p>
+          <Placeholder/>
           <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
+          <FacebookProvider appId="481038945698995">
+            <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className={"buttonShareFb"}>
+              <p>Chia sẻ</p>
+            </ShareButton>
+          </FacebookProvider>
         </div>
       );
 
     }
     else {
       return (<div>
+        <p className={"TitleNoResult"}>Các ân tứ:</p>
         {result.map(r => {
-          // console.log("r ", r);
+
           return (
             <div>
               <p className={"TitleResult"}>{r.des.name}</p>
@@ -175,12 +214,13 @@ class App extends React.Component {
         })
         }
         <div className={"BottomButtonResultContainer"}>
-        <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
-        <FacebookProvider appId="481038945698995">
-          <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className ={"buttonShareFb"}>
-            <h4>Share</h4>
-          </ShareButton>
-        </FacebookProvider>
+          <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
+          <Placeholder/>
+          <FacebookProvider appId="481038945698995">
+            <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className={"buttonShareFb"}>
+              <p>Chia sẻ</p>
+            </ShareButton>
+          </FacebookProvider>
         </div>
       </div>);
     }
@@ -194,8 +234,6 @@ class App extends React.Component {
         <button className={"ButtonSubmitContainer"} onClick={this.onSubmit}>{"Xác nhận"}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
-
-          // onAfterOpen={this.afterOpenModal}
           shouldCloseOnOverlayClick={false}
           shouldCloseOnEsc={false}
           onRequestClose={this.closeModal}
@@ -203,6 +241,17 @@ class App extends React.Component {
           contentLabel="Example Modal"
         >
           {this.renderResult()}
+        </Modal>
+
+        <Modal
+          isOpen={this.state.modalIsOpenIntro}
+          shouldCloseOnOverlayClick={false}
+          shouldCloseOnEsc={false}
+          onRequestClose={this.closeModalIntro}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          {this.renderIntro()}
         </Modal>
 
       </div>

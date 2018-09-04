@@ -18,12 +18,12 @@ const description = {
 
   [giftKey.CD]: {
     name: "Chứng đạo",
-    description: "Chía sẻ Phúc âm đem tội nhân đến với Chúa."
+    description: "Chia sẻ Phúc âm đem tội nhân đến với Chúa."
   },
 
   [giftKey.KG]: {
-    name: "Khuyên gia",
-    description: "Hòa giải và làm cho mọi mâu thuẩn tiêu tan."
+    name: "Khuyên giải",
+    description: "Hòa giải và làm cho mọi mâu thuẫn tiêu tan."
   },
 
   [giftKey.DT]: {
@@ -38,7 +38,7 @@ const description = {
 
   [giftKey.TK]: {
     name: "Tiếp khách",
-    description: "Tiếp khách: Đãi đằng, cung cấp nhu cầu chỗ trọ thật thuật lợi."
+    description: "Đãi đằng, cung cấp nhu cầu chỗ trọ thật thuật lợi."
   },
 
   [giftKey.HB]: {
