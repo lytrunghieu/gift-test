@@ -4,9 +4,8 @@
   width: 80%;
   padding: 1em;
   text-align: center; }
-
-.Loader img {
-  width: 100%; }
+  .Loader img {
+    width: 100%; }
 
 .Checkbox {
   flex-direction: row; }

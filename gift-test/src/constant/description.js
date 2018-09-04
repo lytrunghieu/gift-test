@@ -1,4 +1,4 @@
-import giftKey from "./giftKey"
+import giftKey from "./giftKey";
 
 const description = {
   [giftKey.DH]: {
@@ -80,7 +80,7 @@ const description = {
     name: "Khôn ngoan",
     description: "Biết cách sống và giao tế khéo léo."
   }
-}
+};
 
 
 export default description;

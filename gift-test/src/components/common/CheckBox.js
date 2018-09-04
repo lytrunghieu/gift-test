@@ -19,7 +19,11 @@ const Checkbox = ({text , isActive = false, onChangeValue =() =>{}}) => {
 };
 
 Checkbox.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  isActive : PropTypes.bool,
+  onChangeValue : PropTypes.func
 };
+
+
 
 export default Checkbox;

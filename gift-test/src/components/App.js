@@ -59,7 +59,7 @@ class App extends React.Component {
         id: q.id,
         selected: 0,
         des: description[q.id]
-      }
+      };
     });
     return result;
   }
@@ -104,7 +104,7 @@ class App extends React.Component {
     else {
       if (sum.length > 3) {
         sum = sum.sort((a, b) => {
-          return b.point - a.point
+          return b.point - a.point;
         });
         maxPoint = sum.splice(0, 3);
       }
@@ -136,7 +136,7 @@ class App extends React.Component {
     const {questions} = this.state;
     return questions.map((q, index) => {
       return (<QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
-                                 selectedIndex={q.selected}/>)
+                                 selectedIndex={q.selected}/>);
     });
   }
 
@@ -151,7 +151,7 @@ class App extends React.Component {
           {/*<div>No result</div>*/}
           {/*<button className={"buttonSubmit"} onClick={this.onPressReset}>{"Làm lại"}</button>*/}
         </div>
-      )
+      );
 
     }
     else {
@@ -176,7 +176,7 @@ class App extends React.Component {
 
         </FacebookProvider>
         </div>
-      </div>)
+      </div>);
     }
   }
 
