@@ -171,7 +171,7 @@ class App extends React.Component {
           <p className={"QuestionContent"}>4/Dùng ân tứ để áp lực và làm khổ người khác.</p>
           <p className={"QuestionContent"}>5/Dùng ân tứ từ chối trách nhiệm.</p>
           <p className={"TitleResult"}>Lời nhắn nhủ</p>
-          <p className={"QuestionContent"}>Bài khảo sát ân tứ này chỉ mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của bạn thì cũng đừng bối rối nhé</p>
+          <p className={"QuestionContent"}>Bài trắc nghiệm này sẽ chọn ra tối đa 3 ân tứ có điểm cao nhất. Bài này chỉ mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của bạn thì cũng đừng bối rối nhé</p>
           <Placeholder/>
           <button className={"ButtonSubmitContainer"} onClick={this.closeModalIntro}>{"Tôi đồng ý"}</button>
         </div>
@@ -226,9 +226,19 @@ class App extends React.Component {
     }
   }
 
+  renderHeader()
+  {
+    return (
+      <div className={"HeaderContainer"}>
+        <p>Trắc nghiệm ân tứ</p>
+    </div>
+    );
+  }
+
   render() {
     return (
       <div className={"AppContainer"}>
+        {this.renderHeader()}
         {this.renderQuestion()}
         <Placeholder/>
         <button className={"ButtonSubmitContainer"} onClick={this.onSubmit}>{"Xác nhận"}</button>
