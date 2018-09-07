@@ -244,7 +244,7 @@ class App extends React.Component {
     return (
       <div className={"HeaderContainer"}>
 
-        <img src={Images.cross} className={"logoContainer"}/>
+        {/*<img src={Images.cross} className={"logoContainer"}/>*/}
 
         <p>Trắc nghiệm ân tứ</p>
       </div>
