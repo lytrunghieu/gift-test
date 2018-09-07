@@ -84,6 +84,15 @@
   flex-direction: row;
   height: 4vh;
   align-items: center;
+  //border-bottom-width:  1px;
+  border-width: 1px;
+  border-style: solid ;
+  //background-color: red;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  //border-bottom-color: lightgray;
+
 }
 .ButtonSubmitContainer {
   background-color: darkblue;
@@ -115,11 +124,19 @@
   color: orangered;
 }
 .HeaderContainer {
-  background-color:darkblue;
-  height: 10vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 5vh;
+  background-color:deepskyblue;
+  //width: 100%;
+  padding-top: 2vh;
+  display: flex;
+  font-size: 32px;
+  font-size: 5vw;
   color: white;
-  margin-bottom: 20px;
+  padding-left: 5%;
+  //margin-bottom: 20px;
+  flex-direction: row;
+
+}
+.logoContainer {
+  width: 10%;
+  height:10%;
 }

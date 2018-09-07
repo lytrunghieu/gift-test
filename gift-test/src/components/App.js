@@ -10,13 +10,8 @@ import questions from '../constant/questions';
 import description from '../constant/description';
 import * as  _ from "lodash";
 import Modal from 'react-modal';
-// import {
-// } from 'react-share';
-
-// import { FacebookButton, FacebookCount } from "react-social";
 import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
-// import * as Scroll from 'react-scroll';
-// import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import Images from "../utils/Images";
 
 const customStyles = {
   content: {
@@ -44,7 +39,7 @@ class App extends React.Component {
       questions: this.generateQuestion(questions),
       result: [],
       modalIsOpen: false,
-      modalIsOpenIntro : true
+      modalIsOpenIntro: true
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
@@ -74,6 +69,22 @@ class App extends React.Component {
   onSelectAnswer(index, id, indexSelected) {
     const {questions} = this.state;
     questions[index].selected = indexSelected;
+    //todo: for test
+    // const group = _.groupBy(questions, e => e.id);
+    // let sum = [];
+    // for (let key in group) {
+    //   let sumPoint = _.sumBy(group[key], e => e.selected);
+    //   if (sumPoint > 0) {
+    //     sum.push({
+    //       id: key,
+    //       point: sumPoint,
+    //       des: group[key][0].des
+    //     });
+    //   }
+    // }
+    //
+    // console.log("result ", sum);
+
     this.setState({
       questions: questions
     });
@@ -156,25 +167,27 @@ class App extends React.Component {
     });
   }
 
-  renderIntro(){
-    return(
-        <div>
-          <p className={"TitleResult"}>Những điều cần biết về ân tứ</p>
-          <p className={"QuestionContent"}>1/Tài năng không phải là ân tứ.</p>
-          <p className={"QuestionContent"}>2/Tài năng có thể trở thành ân tứ.</p>
-          <p className={"QuestionContent"}>3/Trách nhiệm không phải là ân tứ.</p>
-          <p className={"QuestionContent"}>4/Cá tánh không phải là ân tứ.</p>
-          <p className={"TitleResult"}>Sự sử dụng sai lầm về ân tứ:</p>
-          <p className={"QuestionContent"}>1/Dùng ân tứ khỏa lấp sự yếu đuối tâm linh.</p>
-          <p className={"QuestionContent"}>2/Dùng ân tứ để tôn vinh cá nhân.</p>
-          <p className={"QuestionContent"}>3/Dùng ân tứ để phô trương quyền lực.</p>
-          <p className={"QuestionContent"}>4/Dùng ân tứ để áp lực và làm khổ người khác.</p>
-          <p className={"QuestionContent"}>5/Dùng ân tứ từ chối trách nhiệm.</p>
-          <p className={"TitleResult"}>Lời nhắn nhủ</p>
-          <p className={"QuestionContent"}>Bài trắc nghiệm này sẽ chọn ra tối đa 3 ân tứ có điểm cao nhất. Bài này chỉ mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của bạn thì cũng đừng bối rối nhé</p>
-          <Placeholder/>
-          <button className={"ButtonSubmitContainer"} onClick={this.closeModalIntro}>{"Tôi đồng ý"}</button>
-        </div>
+  renderIntro() {
+    return (
+      <div>
+        <p className={"TitleResult"}>Những điều cần biết về ân tứ</p>
+        <p className={"QuestionContent"}>1/Tài năng không phải là ân tứ.</p>
+        <p className={"QuestionContent"}>2/Tài năng có thể trở thành ân tứ.</p>
+        <p className={"QuestionContent"}>3/Trách nhiệm không phải là ân tứ.</p>
+        <p className={"QuestionContent"}>4/Cá tánh không phải là ân tứ.</p>
+        <p className={"TitleResult"}>Sự sử dụng sai lầm về ân tứ:</p>
+        <p className={"QuestionContent"}>1/Dùng ân tứ khỏa lấp sự yếu đuối tâm linh.</p>
+        <p className={"QuestionContent"}>2/Dùng ân tứ để tôn vinh cá nhân.</p>
+        <p className={"QuestionContent"}>3/Dùng ân tứ để phô trương quyền lực.</p>
+        <p className={"QuestionContent"}>4/Dùng ân tứ để áp lực và làm khổ người khác.</p>
+        <p className={"QuestionContent"}>5/Dùng ân tứ từ chối trách nhiệm.</p>
+        <p className={"TitleResult"}>Lời nhắn nhủ</p>
+        <p className={"QuestionContent"}>Bài trắc nghiệm này sẽ chọn ra tối đa 3 ân tứ có điểm cao nhất. Bài này chỉ
+          mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của
+          bạn thì cũng đừng bối rối nhé</p>
+        <Placeholder/>
+        <button className={"ButtonSubmitContainer"} onClick={this.closeModalIntro}>{"Tôi đồng ý"}</button>
+      </div>
     );
   }
 
@@ -186,10 +199,11 @@ class App extends React.Component {
       return (
         <div>
           <p className={"TitleNoResult"}>Tiếc quá không tìm thấy ân tứ của bạn trong bài khảo sát này</p>
-          <p className={"DescriptionResult"}>Đừng bối rối, hãy kiên nhẫn cầu nguyện. Có thể bạn có ấn tứ khác không nằm
+          <p className={"DescriptionResult"}>Đừng bối rối, hãy kiên nhẫn cầu nguyện. Có thể bạn có ân tứ khác không nằm
             trong bài khảo sát này</p>
           <Placeholder/>
           <button className={"ButtonSubmitContainer"} onClick={this.onPressReset}>{"Làm lại"}</button>
+          <Placeholder/>
           <FacebookProvider appId="481038945698995">
             <ShareButton href="https://tnat-4fe2a.firebaseapp.com/" className={"buttonShareFb"}>
               <p>Chia sẻ</p>
@@ -226,12 +240,14 @@ class App extends React.Component {
     }
   }
 
-  renderHeader()
-  {
+  renderHeader() {
     return (
       <div className={"HeaderContainer"}>
+
+        <img src={Images.cross} className={"logoContainer"}/>
+
         <p>Trắc nghiệm ân tứ</p>
-    </div>
+      </div>
     );
   }
 

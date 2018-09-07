@@ -34,7 +34,13 @@ export default {
       {
         test: /\.json$/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/i,
+        loader: 'file-loader?limit=100000&name=rjsApp/images/[name].[ext]'
+
       }
     ]
+
   }
 };
