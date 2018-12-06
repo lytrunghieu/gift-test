@@ -8,6 +8,7 @@
     width: 100%;
   }
 }
+
 .boxCheckbox {
 }
 
@@ -59,12 +60,17 @@
   flex-direction: column;
 }
 .AppContainer {
+  //height: 100px;
+  //overflow-y: hidden;
+  //height: 100;
+}
+.AppContent {
   padding-left: 4vw;
   padding-right: 4vw;
   background-color: whitesmoke;
   padding-bottom: 2vh;
-
 }
+
 .QuestionContentContainer {
   padding-right:  2vw;
   padding-left: 2vw;
@@ -94,17 +100,31 @@
   //border-bottom-color: lightgray;
 
 }
+
+
+.ButtonSubmitContainerWraper {
+  transform: translateZ(0px);
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
 .ButtonSubmitContainer {
   background-color: darkblue;
-  align-items: center;
-  justify-content: center;
+  //align-items: center;
+  //justify-content: center;
   height: 6vh;
   width: 50vw;
   font-size: 4vh;
   color: white;
   border-radius: 10px;
   align-self: center;
+
 }
+
+
+
 .TitleResult {
   font-size: 4vh;
   color: orangered;
@@ -128,15 +148,24 @@
   //width: 100%;
   padding-top: 2vh;
   display: flex;
-  font-size: 32px;
   font-size: 5vw;
   color: white;
   padding-left: 5%;
-  //margin-bottom: 20px;
-  flex-direction: row;
-
+  flex-direction: column;
 }
+
+.HeaderNotice {
+  padding-top: 2vh;
+  display: flex;
+  font-size: 3vw;
+  color: red;
+}
+
 .logoContainer {
   width: 10%;
   height:10%;
 }
+.QuestionListContainer {
+  margin-bottom: 6vh;
+}
+

@@ -47,7 +47,7 @@
   display: flex;
   flex-direction: column; }
 
-.AppContainer {
+.AppContent {
   padding-left: 4vw;
   padding-right: 4vw;
   background-color: whitesmoke;
@@ -78,10 +78,15 @@
   border-right-color: transparent;
   border-left-color: transparent; }
 
+.ButtonSubmitContainerWraper {
+  transform: translateZ(0px);
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+  background-color: whitesmoke; }
+
 .ButtonSubmitContainer {
   background-color: darkblue;
-  align-items: center;
-  justify-content: center;
   height: 6vh;
   width: 50vw;
   font-size: 4vh;
@@ -110,12 +115,20 @@
   background-color: deepskyblue;
   padding-top: 2vh;
   display: flex;
-  font-size: 32px;
   font-size: 5vw;
   color: white;
   padding-left: 5%;
-  flex-direction: row; }
+  flex-direction: column; }
+
+.HeaderNotice {
+  padding-top: 2vh;
+  font-size: 3vw;
+  color: red;
+  overflow-wrap: break-word; }
 
 .logoContainer {
   width: 10%;
   height: 10%; }
+
+.QuestionListContainer {
+  margin-bottom: 6vh; }

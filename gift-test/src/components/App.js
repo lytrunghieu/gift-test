@@ -12,6 +12,7 @@ import * as  _ from "lodash";
 import Modal from 'react-modal';
 import FacebookProvider, {Comments, EmbeddedPost, ShareButton} from 'react-facebook';
 import Images from "../utils/Images";
+import Sticky from 'react-sticky-el';
 
 const customStyles = {
   content: {
@@ -39,7 +40,8 @@ class App extends React.Component {
       questions: this.generateQuestion(questions),
       result: [],
       modalIsOpen: false,
-      modalIsOpenIntro: true
+      modalIsOpenIntro: true,
+      remainQuestions: questions.length
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
@@ -47,17 +49,31 @@ class App extends React.Component {
     this.onPressReset = this.onPressReset.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.closeModalIntro = this.closeModalIntro.bind(this);
+    //Todo: for test
+    // setTimeout(()=>{
+    //   this.setState({
+    //     questions : this.generateQuestion(questions, true)
+    //   });
+    // },5000);
+  }
+
+  componentWillUpdate(nextProps, nextStats) {
+    if (nextStats.questions !== this.state.questions) {
+      const {questions} = nextStats;
+      const remainQuestions = questions.filter(e => e.selected === -1).length;
+      this.setState({remainQuestions});
+    }
   }
 
   //endregion
 
-  generateQuestion(questions) {
+  generateQuestion(questions , auto = false) {
     let result = [];
     result = questions.map(q => {
       return {
         content: q.content,
         id: q.id,
-        selected: 0,
+        selected: auto ? 2  : -1,
         des: description[q.id]
       };
     });
@@ -68,7 +84,11 @@ class App extends React.Component {
 
   onSelectAnswer(index, id, indexSelected) {
     const {questions} = this.state;
-    questions[index].selected = indexSelected;
+    const newQuestions = questions.map(e => {
+      return e;
+    });
+    newQuestions[index].selected = indexSelected;
+
     //todo: for test
     // const group = _.groupBy(questions, e => e.id);
     // let sum = [];
@@ -85,10 +105,9 @@ class App extends React.Component {
     //
     // console.log("result ", sum);
 
-    this.setState({
-      questions: questions
-    });
+    this.setState({questions: newQuestions});
   }
+
 
   onPressReset() {
     this.closeModal();
@@ -156,15 +175,21 @@ class App extends React.Component {
 
   renderQuestion() {
     const {questions} = this.state;
-    return questions.map((q, index) => {
-      return (<div>
-        <QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
-                           selectedIndex={q.selected}/>
-        {index < questions.length - 1 ?
-          <Placeholder/> : null
-        }
-      </div>);
-    });
+    return <div className={"QuestionListContainer"}>
+      {
+        questions.map((q, index) => {
+          return (
+            <div>
+              <QuestionComponent onSelect={this.onSelectAnswer} id={q.id} index={index + 1} content={q.content}
+                                 selectedIndex={q.selected}/>
+              {index < questions.length - 1 ?
+                <Placeholder/> : null
+              }
+            </div>
+          )
+        })
+      }
+    </div>;
   }
 
   renderIntro() {
@@ -182,7 +207,7 @@ class App extends React.Component {
         <p className={"QuestionContent"}>4/Dùng ân tứ để áp lực và làm khổ người khác.</p>
         <p className={"QuestionContent"}>5/Dùng ân tứ từ chối trách nhiệm.</p>
         <p className={"TitleResult"}>Lời nhắn nhủ</p>
-        <p className={"QuestionContent"}>Bài trắc nghiệm này sẽ chọn ra tối đa 3 ân tứ có điểm cao nhất. Bài này chỉ
+        <p className={"QuestionContent"}>Bài trắc nghiệm này sẽ chọn ra tối đa 3 ân tứ có điểm số cao nhất trong 16 loại ân tứ với tổng cộng 128 câu trắc nghiệm. Bài này chỉ
           mang tính tương đối. Không nên đặt nó làm trọng tâm để giới hạn bản thân. Nếu kết quả không như dự đoán của
           bạn thì cũng đừng bối rối nhé</p>
         <Placeholder/>
@@ -241,23 +266,49 @@ class App extends React.Component {
   }
 
   renderHeader() {
+    const {remainQuestions, questions} = this.state;
+    const totalQuestion = questions.length;
+    let remainText = "Còn {remainQuestions} trong {totalQuestion} câu hỏi chưa được điền câu trả lời \nGửi câu chưa trả lời:{suggest}";
+    let suggest = "";
+    remainText = remainText.replace("{remainQuestions}", remainQuestions).replace("{totalQuestion}", totalQuestion);
+    if (!remainQuestions) {
+      remainText = "Bạn đã hoàn thành hết các câu hỏi hãy nhấn nút xác nhận để nhận kết quả";
+    }
+    else{
+      const questionNoAnswerIndex = questions.findIndex(e => e.selected === -1);
+      if(questionNoAnswerIndex !==-1 ){
+        suggest =questionNoAnswerIndex + 1;
+        remainText = remainText.replace("{suggest}",suggest);
+      }
+    }
     return (
       <div className={"HeaderContainer"}>
-
-        {/*<img src={Images.cross} className={"logoContainer"}/>*/}
-
         <p>Trắc nghiệm ân tứ</p>
+        <p className={"HeaderNotice"} style={!remainQuestions ? {color: "green"} : null}>{remainText}</p>
       </div>
     );
   }
 
   render() {
+    const {remainQuestions} = this.state;
     return (
       <div className={"AppContainer"}>
-        {this.renderHeader()}
-        {this.renderQuestion()}
-        <Placeholder/>
-        <button className={"ButtonSubmitContainer"} onClick={this.onSubmit}>{"Xác nhận"}</button>
+        <div className={"AppContent"}>
+          <Sticky>
+            {this.renderHeader()}
+
+          </Sticky>
+          {this.renderQuestion()}
+        </div>
+
+        {
+          !remainQuestions &&
+          <div className={"ButtonSubmitContainerWraper"} style={{alignItems:"center"}} >
+            <button className={"ButtonSubmitContainer"}  onClick={this.onSubmit}>{"Xác nhận"}</button>
+          </div>
+
+          || null
+        }
         <Modal
           isOpen={this.state.modalIsOpen}
           shouldCloseOnOverlayClick={false}
@@ -281,6 +332,7 @@ class App extends React.Component {
         </Modal>
 
       </div>
+
     );
   }
 

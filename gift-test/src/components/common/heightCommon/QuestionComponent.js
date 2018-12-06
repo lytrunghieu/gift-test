@@ -6,11 +6,17 @@ const QuestionComponent = ({index, id, content, onSelect = {}, selectedIndex}) =
   return (
     <div
       className="Question"
+
     >
-      <div className={"IndexQuestionContainer"}>
-        <p className={"IndexQuestionText"}>{index}</p>
+      <div className={"IndexQuestionContainer"}
+           style ={selectedIndex  ===-1 ? {backgroundColor : "orangered" } : null}
+
+      >
+        <p className={"IndexQuestionText"}
+        >{index}</p>
       </div>
-      <div className={"QuestionContentContainer"}>
+      <div className={"QuestionContentContainer"}
+      >
       <p className={"QuestionContent"}>{content}</p>
       <div>
         <CheckBox isActive={selectedIndex == 0} text={"không đúng tí nào"} onChangeValue={() =>onSelect(index-1,id, 0)}/>
