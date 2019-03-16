@@ -268,23 +268,27 @@ class App extends React.Component {
   renderHeader() {
     const {remainQuestions, questions} = this.state;
     const totalQuestion = questions.length;
-    let remainText = "Còn {remainQuestions} trong {totalQuestion} câu hỏi chưa được điền câu trả lời \nGửi câu chưa trả lời:{suggest}";
+    let remainText = "Còn {remainQuestions} trong {totalQuestion} câu hỏi chưa được điền câu trả lời";
+    let questionNotYetAnswer = "câu chưa trả lời:{suggest}";
     let suggest = "";
-    remainText = remainText.replace("{remainQuestions}", remainQuestions).replace("{totalQuestion}", totalQuestion);
+    remainText = remainText.replace("{remainQuestions}", remainQuestions).replace("{totalQuestion}", totalQuestion)
+    questionNotYetAnswer = questionNotYetAnswer.replace("{totalQuestion}", totalQuestion);
     if (!remainQuestions) {
       remainText = "Bạn đã hoàn thành hết các câu hỏi hãy nhấn nút xác nhận để nhận kết quả";
+      questionNotYetAnswer ="";
     }
     else{
       const questionNoAnswerIndex = questions.findIndex(e => e.selected === -1);
       if(questionNoAnswerIndex !==-1 ){
         suggest =questionNoAnswerIndex + 1;
-        remainText = remainText.replace("{suggest}",suggest);
+        questionNotYetAnswer = questionNotYetAnswer.replace("{suggest}",suggest);
       }
     }
     return (
       <div className={"HeaderContainer"}>
         <p>Trắc nghiệm ân tứ</p>
         <p className={"HeaderNotice"} style={!remainQuestions ? {color: "green"} : null}>{remainText}</p>
+        <p className={"HeaderNotice"} style={!remainQuestions ? {color: "green"} : null}>{questionNotYetAnswer}</p>
       </div>
     );
   }

@@ -4,9 +4,8 @@
   width: 80%;
   padding: 1em;
   text-align: center; }
-
-.Loader img {
-  width: 100%; }
+  .Loader img {
+    width: 100%; }
 
 .textCheckbox {
   margin-left: 15pt;
@@ -122,9 +121,9 @@
 
 .HeaderNotice {
   padding-top: 2vh;
+  display: flex;
   font-size: 3vw;
-  color: red;
-  overflow-wrap: break-word; }
+  color: red; }
 
 .logoContainer {
   width: 10%;
