@@ -63,7 +63,7 @@ const description = {
 
   [giftKey.CB]: {
     name: "Chăn bầy",
-    description: "Quản trị và chăn nuôi Hội thánh no đủ lời Chúa."
+    description: "Quản trị và chăm lo Hội thánh no đủ lời Chúa."
   },
 
   [giftKey.PV]: {
